@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smeds Air Conditioning - Professional HVAC Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            background: #f8fafc;
+            text-align: center;
+        }
+        
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #1e3a8a;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1e3a8a;
+        }
+        
+        /* Why Choose Us */
+        .why-us {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .why-us h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #1e3a8a;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .feature-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3b82f6;
+        }
+        
+        .feature h3 {
+            margin: 15px 0 10px;
+            color: #1e3a8a;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: #1e3a8a;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info p {
+            margin: 10px 0;
+        }
+        
+        .phone {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f59e0b;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Smeds Air Conditioning</h1>
+        <p>Professional HVAC services for your home and business. Stay cool in summer, warm in winter with our expert team.</p>
+        <a href="tel:+1234567890" class="cta-button">Call Now for Free Quote</a>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-icon">❄️</div>
+                <h3>AC Installation</h3>
+                <p>Expert installation of all major brands. We help you choose the right system for your space and budget.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>AC Repair</h3>
+                <p>Fast, reliable repairs. Our technicians diagnose and fix issues quickly to get you comfortable again.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Maintenance</h3>
+                <p>Regular maintenance plans to keep your system running efficiently and prevent costly breakdowns.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Commercial HVAC</h3>
+                <p>Full-service commercial heating and cooling solutions for businesses of all sizes.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <h2>Why Choose Smeds?</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-number">24/7</div>
+                <h3>Emergency Service</h3>
+                <p>Available around the clock for urgent repairs</p>
+            </div>
+            <div class="feature">
+                <div class="feature-number">15+</div>
+                <h3>Years Experience</h3>
+                <p>Trusted expertise you can count on</p>
+            </div>
+            <div class="feature">
+                <div class="feature-number">100%</div>
+                <h3>Satisfaction Guaranteed</h3>
+                <p>We stand behind every job we do</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Get Your Free Quote Today</h2>
+        <div class="contact-info">
+            <p>📍 Serving Your Local Area</p>
+            <p>📧 info@smedsac.com</p>
+        </div>
+        <a href="tel:+1234567890" class="phone">📞 (123) 456-7890</a>
+        <p style="margin-top: 30px;">
+            <a href="tel:+1234567890" class="cta-button">Call Now</a>
+        </p>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Smeds Air Conditioning. All rights reserved.</p>
+        <p>Licensed & Insured HVAC Professionals</p>
+    </footer>
+</body>
+</html>
