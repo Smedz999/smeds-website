@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | HJS Business Services Ltd</title>
+    <meta name="description" content="The page you are looking for could not be found. Return to HJS Business Services.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='55' font-weight='700' text-anchor='middle' fill='white' font-family='Arial'%3EH%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 60px;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--navy) 100%);
+            color: var(--white);
+        }
+        .error-code {
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 16px;
+            color: var(--sky-blue);
+        }
+        .error-page h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+        .error-page p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">HJS <span>Business Services</span></a>
+            <div class="nav-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="pages/contact.html" class="nav-link">Contact</a>
+            </div>
+            <a href="pages/contact.html" class="btn-nav">Request a Quotation</a>
+        </div>
+    </nav>
+
+    <section class="error-page">
+        <div>
+            <div class="error-code">404</div>
+            <h1>Page Not Found</h1>
+            <p>Sorry, the page you are looking for doesn't exist or has been moved. Let's get you back on track.</p>
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary btn-large">Back to Home</a>
+                <a href="pages/contact.html" class="btn btn-secondary btn-large">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" style="padding: 40px 0;">
+        <div class="container">
+            <div class="footer-bottom" style="border-top:none;padding-top:0;">
+                <p>&copy; 2026 HJS Business Services Ltd. All rights reserved.</p>
+                <p>North West Air Conditioning Specialists</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

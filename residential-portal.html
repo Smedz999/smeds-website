@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Customer Portal | HJS Business Services</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='68' font-size='55' font-weight='700' text-anchor='middle' fill='white' font-family='Arial'%3EH%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --text-dark: #1e293b;
+            --text-medium: #64748b;
+            --text-light: #94a3b8;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Auth Pages */
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        .auth-box {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 48px;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .auth-logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .auth-logo p {
+            color: var(--text-medium);
+            margin-top: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 24px;
+            color: var(--text-medium);
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Portal Layout */
+        .portal-layout {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .portal-layout.active {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--white);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-brand-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-brand-text h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .sidebar-brand-text p {
+            font-size: 0.8rem;
+            color: var(--text-medium);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 16px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-medium);
+            margin-bottom: 4px;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .nav-item.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .user-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            background: var(--bg-light);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .user-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .user-info p {
+            font-size: 0.8rem;
+            color: var(--text-medium);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 32px;
+            max-width: 1200px;
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: var(--text-medium);
+        }
+
+        /* Dashboard Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .stat-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .stat-card-title {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        .stat-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card-icon.blue { background: var(--primary-light); color: var(--primary); }
+        .stat-card-icon.green { background: var(--success-light); color: var(--success); }
+        .stat-card-icon.orange { background: var(--warning-light); color: var(--warning); }
+        .stat-card-icon.red { background: var(--danger-light); color: var(--danger); }
+
+        .stat-card-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        /* Payment Stages */
+        .payment-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+
+        .payment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .payment-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .payment-total {
+            text-align: right;
+        }
+
+        .payment-total-label {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        .payment-total-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stages-container {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stage-card {
+            flex: 1;
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stage-card.completed {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+
+        .stage-card.current {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: scale(1.02);
+        }
+
+        .stage-card.pending {
+            opacity: 0.6;
+        }
+
+        .stage-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 12px;
+        }
+
+        .stage-card.completed .stage-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .stage-card.current .stage-number {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stage-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stage-amount {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stage-status {
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .stage-status.paid {
+            background: var(--success);
+            color: white;
+        }
+
+        .stage-status.due {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stage-status.pending {
+            background: var(--border);
+            color: var(--text-medium);
+        }
+
+        .payment-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 32px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        /* Installation Booking */
+        .booking-section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .booking-section.locked {
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .booking-locked-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            z-index: 10;
+        }
+
+        .booking-locked-overlay svg {
+            width: 48px;
+            height: 48px;
+            color: var(--warning);
+            margin-bottom: 16px;
+        }
+
+        .booking-locked-overlay h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .booking-locked-overlay p {
+            color: var(--text-medium);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            padding: 8px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            border: 2px solid transparent;
+        }
+
+        .calendar-day:hover:not(.disabled):not(.selected) {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .calendar-day.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calendar-day.disabled {
+            color: var(--text-light);
+            cursor: not-allowed;
+            background: var(--bg-light);
+        }
+
+        .calendar-day.today {
+            border-color: var(--primary);
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 300px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast.success { border-left: 4px solid var(--success); }
+        .toast.error { border-left: 4px solid var(--danger); }
+        .toast.warning { border-left: 4px solid var(--warning); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { width: 100%; transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; }
+            .stages-container { flex-direction: column; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="auth-container">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <h1>HJS Residential Portal</h1>
+                <p>Manage your installation payments & booking</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="#" onclick="showRegister()">Create one</a></p>
+                <p style="margin-top: 16px;"><a href="index.html">← Back to Website</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="auth-container hidden">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <h1>Create Account</h1>
+                <p>Start your air conditioning journey</p>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">Full Name</label>
+                    <input type="text" id="regName" required placeholder="John Smith">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Phone</label>
+                    <input type="tel" id="regPhone" required placeholder="0161 626 6099">
+                </div>
+                <div class="form-group">
+                    <label for="regAddress">Installation Address</label>
+                    <input type="text" id="regAddress" required placeholder="123 Main Street, Oldham">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" required placeholder="Min 6 characters" minlength="6">
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? <a href="#" onclick="showLogin()">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portal Dashboard -->
+    <div id="portalLayout" class="portal-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">
+                    <div class="sidebar-brand-icon">H</div>
+                    <div class="sidebar-brand-text">
+                        <h2>HJS Residential</h2>
+                        <p>Customer Portal</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" onclick="showPage('dashboard')">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" onclick="showPage('payments')">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Payments</span>
+                </div>
+                <div class="nav-item" onclick="showPage('booking')">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span>Installation</span>
+                </div>
+                <div class="nav-item" onclick="showPage('documents')">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    <span>Documents</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar" id="userAvatar">JD</div>
+                    <div class="user-info">
+                        <h4 id="userName">John Doe</h4>
+                        <p id="userEmail">john@example.com</p>
+                    </div>
+                </div>
+                <button onclick="logout()" class="btn btn-secondary" style="width: 100%; margin-top: 12px;">Sign Out</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboardPage" class="page">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p>Overview of your installation project</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Project Status</span>
+                            <div class="stat-card-icon blue">📋</div>
+                        </div>
+                        <div class="stat-card-value" id="projectStatus">In Progress</div>
+                        <div class="stat-card-desc">Air conditioning installation</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Total Cost</span>
+                            <div class="stat-card-icon orange">£</div>
+                        </div>
+                        <div class="stat-card-value" id="totalCost">£4,500</div>
+                        <div class="stat-card-desc">Including VAT</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Paid So Far</span>
+                            <div class="stat-card-icon green">✓</div>
+                        </div>
+                        <div class="stat-card-value" id="paidSoFar">£0</div>
+                        <div class="stat-card-desc">Across all stages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-header">
+                            <span class="stat-card-title">Remaining</span>
+                            <div class="stat-card-icon red">⏳</div>
+                        </div>
+                        <div class="stat-card-value" id="remaining">£4,500</div>
+                        <div class="stat-card-desc">Balance due</div>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <div class="payment-header">
+                        <h2>Payment Stages</h2>
+                        <div class="payment-total">
+                            <div class="payment-total-label">Total Project Value</div>
+                            <div class="payment-total-value" id="projectTotal">£4,500</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-section">
+                        <div class="progress-label">
+                            <span>Payment Progress</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="stages-container" id="stagesContainer">
+                        <div class="stage-card current" data-stage="1">
+                            <div class="stage-number">1</div>
+                            <div class="stage-title">Deposit</div>
+                            <div class="stage-amount">£1,500</div>
+                            <div class="stage-status due">33% - Due Now</div>
+                        </div>
+                        <div class="stage-card pending" data-stage="2">
+                            <div class="stage-number">2</div>
+                            <div class="stage-title">Mid-Point</div>
+                            <div class="stage-amount">£1,500</div>
+                            <div class="stage-status pending">33% - Pending</div>
+                        </div>
+                        <div class="stage-card pending" data-stage="3">
+                            <div class="stage-number">3</div>
+                            <div class="stage-title">Completion</div>
+                            <div class="stage-amount">£1,500</div>
+                            <div class="stage-status pending">34% - Pending</div>
+                        </div>
+                    </div>
+
+                    <div class="payment-actions">
+                        <button class="btn btn-primary" onclick="markStagePaid(1)">Pay Deposit (£1,500)</button>
+                    </div>
+                </div>
+
+                <div class="booking-section" id="bookingSection">
+                    <div class="booking-locked-overlay" id="bookingLock">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        <h3>Installation Booking Locked</h3>
+                        <p>Complete all 3 payment stages to unlock date selection</p>
+                    </div>
+                    <h2>Installation Date</h2>
+                    <p style="color: var(--text-medium); margin-bottom: 20px;">Select your preferred installation date</p>
+                    <div id="calendarContainer">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <button class="btn btn-secondary" onclick="changeMonth(-1)">← Prev</button>
+                            <h3 id="calendarMonth">July 2026</h3>
+                            <button class="btn btn-secondary" onclick="changeMonth(1)">Next →</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+                    <div id="selectedDateDisplay" style="margin-top: 20px; padding: 16px; background: var(--success-light); border-radius: 12px; display: none;">
+                        <strong>Selected Date:</strong> <span id="selectedDateText"></span>
+                        <button class="btn btn-success" style="margin-left: 16px;" onclick="confirmBooking()">Confirm Booking</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments Page -->
+            <div id="paymentsPage" class="page hidden">
+                <div class="page-header">
+                    <h1>Payment History</h1>
+                    <p>Track all your payments</p>
+                </div>
+                <div class="payment-section">
+                    <div id="paymentHistory"></div>
+                </div>
+            </div>
+
+            <!-- Booking Page -->
+            <div id="bookingPage" class="page hidden">
+                <div class="page-header">
+                    <h1>Installation Booking</h1>
+                    <p>Schedule your installation date</p>
+                </div>
+                <div class="booking-section">
+                    <div id="bookingStatus"></div>
+                </div>
+            </div>
+
+            <!-- Documents Page -->
+            <div id="documentsPage" class="page hidden">
+                <div class="page-header">
+                    <h1>Documents</h1>
+                    <p>Your quotes, invoices and certificates</p>
+                </div>
+                <div class="payment-section">
+                    <div id="documentsList">
+                        <p style="text-align: center; color: var(--text-medium); padding: 40px;">No documents available yet. They will appear here once your project begins.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // App State
+        let currentUser = null;
+        let currentPage = 'dashboard';
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let selectedDate = null;
+
+        // Demo data structure
+        const defaultProject = {
+            totalCost: 4500,
+            stages: [
+                { id: 1, name: 'Deposit', amount: 1500, percent: 33, status: 'pending', paidDate: null },
+                { id: 2, name: 'Mid-Point', amount: 1500, percent: 33, status: 'pending', paidDate: null },
+                { id: 3, name: 'Completion', amount: 1500, percent: 34, status: 'pending', paidDate: null }
+            ],
+            installationDate: null,
+            bookingConfirmed: false
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            setupForms();
+        });
+
+        function checkAuth() {
+            const user = localStorage.getItem('hjs_residential_user');
+            if (user) {
+                currentUser = JSON.parse(user);
+                showPortal();
+            }
+        }
+
+        function setupForms() {
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const users = JSON.parse(localStorage.getItem('hjs_residential_users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('hjs_residential_user', JSON.stringify(user));
+                showPortal();
+                showToast('Welcome back, ' + user.name + '!', 'success');
+            } else {
+                showToast('Invalid email or password', 'error');
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const phone = document.getElementById('regPhone').value;
+            const address = document.getElementById('regAddress').value;
+            const password = document.getElementById('regPassword').value;
+
+            const users = JSON.parse(localStorage.getItem('hjs_residential_users') || '[]');
+            
+            if (users.find(u => u.email === email)) {
+                showToast('Email already registered', 'error');
+                return;
+            }
+
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                phone,
+                address,
+                password,
+                project: JSON.parse(JSON.stringify(defaultProject)),
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('hjs_residential_users', JSON.stringify(users));
+            localStorage.setItem('hjs_residential_user', JSON.stringify(newUser));
+
+            currentUser = newUser;
+            showPortal();
+            showToast('Account created successfully!', 'success');
+        }
+
+        function showPortal() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('registerPage').classList.add('hidden');
+            document.getElementById('portalLayout').classList.add('active');
+            
+            // Update user info
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('userEmail').textContent = currentUser.email;
+            document.getElementById('userAvatar').textContent = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+
+            updateDashboard();
+            renderCalendar();
+        }
+
+        function showLogin() {
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('registerPage').classList.add('hidden');
+        }
+
+        function showRegister() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('registerPage').classList.remove('hidden');
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('hjs_residential_user');
+            document.getElementById('portalLayout').classList.remove('active');
+            showLogin();
+            showToast('Signed out successfully', 'success');
+        }
+
+        function showPage(page) {
+            // Update nav
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.target.closest('.nav-item').classList.add('active');
+
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            
+            // Show selected page
+            document.getElementById(page + 'Page').classList.remove('hidden');
+            currentPage = page;
+
+            if (page === 'payments') updatePaymentHistory();
+            if (page === 'booking') updateBookingPage();
+        }
+
+        function updateDashboard() {
+            const project = currentUser.project;
+            const paidAmount = project.stages.filter(s => s.status === 'paid').reduce((sum, s) => sum + s.amount, 0);
+            const remaining = project.totalCost - paidAmount;
+            const percent = Math.round((paidAmount / project.totalCost) * 100);
+
+            document.getElementById('totalCost').textContent = '£' + project.totalCost.toLocaleString();
+            document.getElementById('paidSoFar').textContent = '£' + paidAmount.toLocaleString();
+            document.getElementById('remaining').textContent = '£' + remaining.toLocaleString();
+            document.getElementById('projectTotal').textContent = '£' + project.totalCost.toLocaleString();
+            document.getElementById('progressPercent').textContent = percent + '%';
+            document.getElementById('progressBar').style.width = percent + '%';
+
+            // Update stage cards
+            const container = document.getElementById('stagesContainer');
+            container.innerHTML = '';
+            
+            project.stages.forEach((stage, index) => {
+                const card = document.createElement('div');
+                card.className = 'stage-card ' + stage.status;
+                if (stage.status === 'pending' && index > 0 && project.stages[index-1].status === 'paid') {
+                    card.classList.add('current');
+                }
+                
+                card.innerHTML = `
+                    <div class="stage-number">${stage.id}</div>
+                    <div class="stage-title">${stage.name}</div>
+                    <div class="stage-amount">£${stage.amount.toLocaleString()}</div>
+                    <div class="stage-status ${stage.status}">${stage.percent}% - ${stage.status === 'paid' ? 'Paid' : (card.classList.contains('current') ? 'Due Now' : 'Pending')}</div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Update payment actions
+            const actionsDiv = document.querySelector('.payment-actions');
+            const nextStage = project.stages.find(s => s.status === 'pending');
+            if (nextStage) {
+                actionsDiv.innerHTML = `<button class="btn btn-primary" onclick="markStagePaid(${nextStage.id})">Pay ${nextStage.name} (£${nextStage.amount.toLocaleString()})</button>`;
+            } else {
+                actionsDiv.innerHTML = '<button class="btn btn-success" disabled>✓ All Payments Complete</button>';
+            }
+
+            // Update booking lock
+            const allPaid = project.stages.every(s => s.status === 'paid');
+            const bookingLock = document.getElementById('bookingLock');
+            if (allPaid) {
+                bookingLock.style.display = 'none';
+                document.getElementById('projectStatus').textContent = 'Ready for Install';
+            } else {
+                bookingLock.style.display = 'flex';
+                document.getElementById('projectStatus').textContent = 'In Progress';
+            }
+        }
+
+        function markStagePaid(stageId) {
+            const stage = currentUser.project.stages.find(s => s.id === stageId);
+            if (stage) {
+                stage.status = 'paid';
+                stage.paidDate = new Date().toISOString();
+                
+                // Save to localStorage
+                saveUserData();
+                updateDashboard();
+                showToast(stage.name + ' payment of £' + stage.amount.toLocaleString() + ' marked as paid!', 'success');
+            }
+        }
+
+        function saveUserData() {
+            const users = JSON.parse(localStorage.getItem('hjs_residential_users') || '[]');
+            const index = users.findIndex(u => u.id === currentUser.id);
+            if (index !== -1) {
+                users[index] = currentUser;
+                localStorage.setItem('hjs_residential_users', JSON.stringify(users));
+                localStorage.setItem('hjs_residential_user', JSON.stringify(currentUser));
+            }
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            days.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                grid.appendChild(header);
+            });
+
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const today = new Date();
+
+            // Empty cells
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                grid.appendChild(empty);
+            }
+
+            // Days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'calendar-day';
+                cell.textContent = day;
+
+                const date = new Date(currentYear, currentMonth, day);
+                
+                if (date < today) {
+                    cell.classList.add('disabled');
+                } else if (currentUser.project.installationDate && 
+                          date.toDateString() === new Date(currentUser.project.installationDate).toDateString()) {
+                    cell.classList.add('selected');
+                } else if (date.toDateString() === today.toDateString()) {
+                    cell.classList.add('today');
+                }
+
+                if (date >= today) {
+                    cell.onclick = () => selectDate(date);
+                }
+
+                grid.appendChild(cell);
+            }
+
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById('calendarMonth').textContent = monthNames[currentMonth] + ' ' + currentYear;
+        }
+
+        function changeMonth(delta) {
+            currentMonth += delta;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        }
+
+        function selectDate(date) {
+            selectedDate = date;
+            renderCalendar();
+            
+            document.getElementById('selectedDateDisplay').style.display = 'block';
+            document.getElementById('selectedDateText').textContent = date.toLocaleDateString('en-GB', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function confirmBooking() {
+            if (!selectedDate) return;
+            
+            currentUser.project.installationDate = selectedDate.toISOString();
+            currentUser.project.bookingConfirmed = true;
+            saveUserData();
+            
+            showToast('Installation booked for ' + selectedDate.toLocaleDateString('en-GB'), 'success');
+            updateDashboard();
+        }
+
+        function updatePaymentHistory() {
+            const history = document.getElementById('paymentHistory');
+            const paidStages = currentUser.project.stages.filter(s => s.status === 'paid');
+            
+            if (paidStages.length === 0) {
+                history.innerHTML = '<p style="text-align: center; color: var(--text-medium); padding: 40px;">No payments made yet.</p>';
+                return;
+            }
+
+            history.innerHTML = '<h3 style="margin-bottom: 20px;">Payment History</h3>' +
+                paidStages.map(stage => `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; background: var(--bg-light); border-radius: 12px; margin-bottom: 12px;">
+                        <div>
+                            <strong>${stage.name}</strong>
+                            <p style="color: var(--text-medium); font-size: 0.9rem;">Paid on ${new Date(stage.paidDate).toLocaleDateString('en-GB')}</p>
+                        </div>
+                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--success);">£${stage.amount.toLocaleString()}</div>
+                    </div>
+                `).join('');
+        }
+
+        function updateBookingPage() {
+            const status = document.getElementById('bookingStatus');
+            const project = currentUser.project;
+            
+            if (!project.stages.every(s => s.status === 'paid')) {
+                status.innerHTML = `
+                    <div style="text-align: center; padding: 60px;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" style="margin-bottom: 16px;"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        <h2>Booking Locked</h2>
+                        <p style="color: var(--text-medium); margin-top: 8px;">Complete all 3 payment stages to unlock installation booking.</p>
+                        <button class="btn btn-primary" style="margin-top: 24px;" onclick="showPage('dashboard')">Go to Payments</button>
+                    </div>
+                `;
+                return;
+            }
+
+            if (project.bookingConfirmed && project.installationDate) {
+                status.innerHTML = `
+                    <div style="text-align: center; padding: 60px; background: var(--success-light); border-radius: 16px;">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" style="margin-bottom: 16px;"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <h2>Installation Confirmed!</h2>
+                        <p style="font-size: 1.2rem; margin-top: 16px;"><strong>${new Date(project.installationDate).toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</strong></p>
+                        <p style="color: var(--text-medium); margin-top: 8px;">Our team will arrive between 8:00 - 9:00 AM</p>
+                        <div style="margin-top: 24px; padding: 16px; background: white; border-radius: 12px; display: inline-block;">
+                            <p><strong>Need to reschedule?</strong></p>
+                            <p style="color: var(--text-medium);">Call us: <a href="tel:01616266099">0161 626 6099</a></p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                status.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <h2 style="margin-bottom: 16px;">Select Installation Date</h2>
+                        <p style="color: var(--text-medium); margin-bottom: 24px;">Choose your preferred date from the calendar below</p>
+                    </div>
+                `;
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            toast.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    ${type === 'success' 
+                        ? '<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>'
+                        : '<path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'
+                    }
+                </svg>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
