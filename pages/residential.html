@@ -61,8 +61,10 @@
     </div>
 
     <!-- Page Header -->
-    <header class="page-header">
-        <div class="container">
+    <header class="page-header" style="position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('../images/residential-bg.svg') center/cover no-repeat; opacity: 0.2; z-index: 0;"></div>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(37,99,235,0.9), rgba(29,78,216,0.95)); z-index: 1;"></div>
+        <div class="container" style="position: relative; z-index: 2;">
             <h1>Residential Air Conditioning</h1>
             <p>Transform your home into a year-round comfort zone with our premium residential solutions</p>
         </div>
@@ -94,7 +96,9 @@
                     </div>
                 </div>
                 <div class="content-image">
-                    <img src="../images/residential-hero.svg" alt="Modern home with wall-mounted air conditioning unit" style="width: 100%; height: 100%; min-height: 400px; object-fit: cover; border-radius: 24px;">
+                    <div style="background: linear-gradient(135deg, #e0f2fe, #bae6fd); height: 100%; min-height: 400px; border-radius: 24px; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 1.2rem; color: var(--text-medium); padding: 20px; text-align: center;">Professional photography<br>coming soon</span>
+                    </div>
                 </div>
             </div>
         </div>
