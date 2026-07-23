@@ -815,7 +815,7 @@ button {
     background: linear-gradient(135deg, var(--dark-navy) 0%, var(--navy) 100%);
     text-align: center;
     color: var(--white);
-    min-height: 400px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
