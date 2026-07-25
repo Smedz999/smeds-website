@@ -270,14 +270,14 @@
     object-position: center center;
 }
 
-/* Residential Hero - Show wall-mounted AC unit at TOP */
+/* Residential Hero - Show wall-mounted AC unit */
 .residential-hero img {
-    object-position: center 10%;
+    object-position: center 30%;
 }
 
-/* Commercial Hero - Show AC cassette unit at TOP */
+/* Commercial Hero - Show rooftop AC units */
 .commercial-hero img {
-    object-position: center 5%;
+    object-position: center center;
 }
 
 .service-hero-overlay {
