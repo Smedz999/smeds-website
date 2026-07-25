@@ -238,6 +238,18 @@
     box-shadow: var(--shadow-md);
 }
 
+/* Contact Page Logo */
+.contact-logo {
+    margin: 32px 0;
+    text-align: center;
+}
+
+.contact-page-logo {
+    max-width: 200px;
+    height: auto;
+    border-radius: var(--radius-lg);
+}
+
 /* Service Pages */
 .service-hero {
     position: relative;
