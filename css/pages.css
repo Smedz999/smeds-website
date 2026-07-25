@@ -272,12 +272,12 @@
 
 /* Residential Hero - Show wall-mounted AC unit at TOP */
 .residential-hero img {
-    object-position: center 20%;
+    object-position: center 10%;
 }
 
 /* Commercial Hero - Show AC cassette unit at TOP */
 .commercial-hero img {
-    object-position: center 15%;
+    object-position: center 5%;
 }
 
 .service-hero-overlay {
