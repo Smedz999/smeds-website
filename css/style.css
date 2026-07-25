@@ -896,7 +896,7 @@ p {
    ============================================ */
 
 .footer {
-    background: var(--dark-navy);
+    background: var(--primary-blue);
     color: var(--white);
     padding: 64px 0 32px;
 }
@@ -960,7 +960,7 @@ p {
 }
 
 .footer-bottom {
-    border-top: 1px solid var(--light-navy);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top: 32px;
     display: flex;
     flex-direction: column;
@@ -989,7 +989,7 @@ p {
 .footer-social a {
     width: 40px;
     height: 40px;
-    background: var(--light-navy);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
@@ -998,7 +998,7 @@ p {
 }
 
 .footer-social a:hover {
-    background: var(--primary-blue);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .footer-social svg {
