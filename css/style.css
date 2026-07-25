@@ -160,6 +160,9 @@ p {
 .footer-brand .logo-img {
     height: 80px;
     margin-bottom: 16px;
+    background: var(--primary-blue) !important;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
 }
 
 /* Desktop Navigation */
