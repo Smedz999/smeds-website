@@ -266,18 +266,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background: var(--dark-navy);
+    object-fit: cover;
+    object-position: center center;
 }
 
 /* Residential Hero - Show wall-mounted AC unit */
 .residential-hero img {
-    object-fit: contain;
+    object-position: center center;
 }
 
 /* Commercial Hero - Show rooftop AC units */
 .commercial-hero img {
-    object-fit: contain;
+    object-position: center center;
 }
 
 .service-hero-overlay {
