@@ -151,15 +151,14 @@ p {
 }
 
 .logo-img {
-    height: 180px;
+    height: 90px;
     width: auto;
     object-fit: contain;
     background: transparent !important;
-    margin: -40px 0;
 }
 
 .footer-brand .logo-img {
-    height: 100px;
+    height: 80px;
     margin-bottom: 16px;
 }
 
