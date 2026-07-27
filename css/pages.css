@@ -282,8 +282,7 @@
 
 /* Servicing Hero - Show technician and AC unit */
 .servicing-hero img {
-    object-position: center 70%;
-    transform: scale(0.85);
+    object-position: center 35%;
 }
 
 .service-hero-overlay {
