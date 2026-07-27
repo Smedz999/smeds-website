@@ -280,6 +280,12 @@
     object-position: center center;
 }
 
+/* Servicing Hero - Show technician and AC unit */
+.servicing-hero img {
+    object-position: center 30%;
+    transform: scale(1.2);
+}
+
 .service-hero-overlay {
     position: absolute;
     top: 0;
