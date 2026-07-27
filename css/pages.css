@@ -273,6 +273,8 @@
 /* Residential Hero - Show wall-mounted AC unit */
 .residential-hero img {
     object-position: 65% 25%;
+    object-fit: contain;
+    background-color: #0f172a;
 }
 
 /* Commercial Hero - Show rooftop AC units */
