@@ -246,25 +246,6 @@ p {
     color: var(--primary-blue);
 }
 
-/* Dropdown with image */
-.dropdown-with-image {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.dropdown-image {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
-    display: none;
-}
-
-.dropdown-item:hover .dropdown-image {
-    display: block;
-}
-
 /* CTA Button */
 .nav-cta {
     display: none;
