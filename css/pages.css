@@ -285,6 +285,11 @@
     object-position: center 15%;
 }
 
+/* Maintenance Hero - Show outdoor AC unit */
+.maintenance-hero img {
+    object-position: center 60%;
+}
+
 .service-hero-overlay {
     position: absolute;
     top: 0;
