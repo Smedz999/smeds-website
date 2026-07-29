@@ -1047,6 +1047,182 @@ p {
 }
 
 /* ============================================
+   NAV PHONE
+   ============================================ */
+
+.nav-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: transparent;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all var(--transition-base);
+    margin-right: 0.75rem;
+}
+
+.nav-phone:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   ACCREDITATIONS
+   ============================================ */
+
+.accreditations {
+    padding: 5rem 0;
+    background: var(--off-white);
+}
+
+.accreditations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.accreditation-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.accreditation-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.accreditation-badge {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-blue);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.accreditation-item p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   FINANCE OPTIONS
+   ============================================ */
+
+.finance-options {
+    padding: 5rem 0;
+    background: var(--white);
+}
+
+.finance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.finance-step {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: var(--off-white);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--light-gray);
+    transition: all var(--transition-base);
+}
+
+.finance-step:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-4px);
+}
+
+.finance-number {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-blue);
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 800;
+    border-radius: var(--radius-full);
+    margin: 0 auto 1.5rem;
+}
+
+.finance-step h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.finance-step p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+.finance-terms {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+/* ============================================
+   MANUFACTURERS
+   ============================================ */
+
+.manufacturers {
+    padding: 5rem 0;
+    background: var(--off-white);
+}
+
+.manufacturers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.manufacturer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+    text-align: center;
+    transition: all var(--transition-base);
+    min-height: 80px;
+}
+
+.manufacturer-logo:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    color: var(--primary-blue);
+}
+
+/* ============================================
    UTILITY CLASSES
    ============================================ */
 
