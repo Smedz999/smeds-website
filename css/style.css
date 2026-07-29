@@ -1119,6 +1119,15 @@ p {
     font-weight: 500;
 }
 
+.accreditation-logo {
+    max-width: 120px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
 /* ============================================
    FINANCE OPTIONS
    ============================================ */
