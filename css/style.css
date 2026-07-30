@@ -1077,19 +1077,26 @@ p {
 }
 
 .accreditation-fgas {
-    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    background: transparent;
+    border: 2px solid var(--light-gray);
+    color: var(--text-primary);
 }
 
 .accreditation-refcom {
-    background: linear-gradient(135deg, #059669, #10b981);
+    background: transparent;
+    border: 2px solid var(--light-gray);
+    color: var(--text-primary);
 }
 
 .accreditation-pasma {
-    background: linear-gradient(135deg, #b45309, #f59e0b);
+    background: transparent;
+    border: 2px solid var(--light-gray);
+    color: var(--text-primary);
 }
 
 .accreditation-ipaf {
-    background: linear-gradient(135deg, #dc2626, #ef4444);
+    background: transparent;
+    border: 2px solid var(--light-gray);
     overflow: hidden;
     padding: 8px;
 }
@@ -1101,7 +1108,9 @@ p {
 }
 
 .accreditation-city {
-    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    background: transparent;
+    border: 2px solid var(--light-gray);
+    color: var(--text-primary);
     font-size: 0.75rem;
 }
 
