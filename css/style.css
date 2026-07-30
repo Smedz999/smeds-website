@@ -1206,26 +1206,6 @@ p {
     text-align: center;
 }
 
-.accreditation-fgas {
-    background: #005eb8;
-}
-
-.accreditation-refcom {
-    background: #e31837;
-}
-
-.accreditation-pasma {
-    background: #003366;
-}
-
-.accreditation-ipaf {
-    background: #ff6600;
-}
-
-.accreditation-city {
-    background: #8b4513;
-}
-
 .accreditation-item p {
     color: var(--text-secondary);
     font-size: 0.875rem;
